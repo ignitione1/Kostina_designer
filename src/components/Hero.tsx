@@ -37,7 +37,6 @@ export function Hero() {
         accumulatedScrollRef.current = Math.max(0, Math.min(700, accumulatedScrollRef.current + e.deltaY))
 
         const newProgress = Math.max(0, Math.min(1, accumulatedScrollRef.current / 700))
-        setAnimationProgress(newProgress)
 
         if (newProgress < 1) {
           setAnimationComplete(false)
@@ -85,7 +84,6 @@ export function Hero() {
         accumulatedScrollRef.current = Math.max(0, Math.min(700, accumulatedScrollRef.current + deltaY * 3))
 
         const newProgress = Math.max(0, Math.min(1, accumulatedScrollRef.current / 700))
-        setAnimationProgress(newProgress)
 
         if (newProgress < 1) {
           setAnimationComplete(false)
