@@ -5,6 +5,8 @@ export default defineConfig({
   plugins: [react()],
   base: '/Kostina_designer/',
   build: {
-    outDir: 'docs'
-  }
+    outDir: 'docs',
+    copyPublicDir: true
+  },
+  publicDir: 'public'
 })
