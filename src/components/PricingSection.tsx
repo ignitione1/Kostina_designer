@@ -1,5 +1,4 @@
 import { HighlightedText } from "../components/HighlightedText"
-import { Check } from "lucide-react"
 
 const packages = [
   {
@@ -61,12 +60,15 @@ type PricingSectionProps = {
 }
 
 export function PricingSection({ withTopPadding = false }: PricingSectionProps) {
+  const leftServices = additionalServices.filter((_, index) => index % 2 === 0)
+  const rightServices = additionalServices.filter((_, index) => index % 2 === 1)
+
   return (
-    <section id="pricing" className={withTopPadding ? "pt-40" : "pt-24"}>
-      <div className="pb-24 bg-secondary/50">
+    <section id="pricing" className={withTopPadding ? "pt-40" : "pt-32"}>
+      <div className="pt-24 pb-24 bg-secondary/50">
         <div className="container mx-auto px-6 md:px-12">
           <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-6">Стоимость услуг</p>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.1] mb-6">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.1] mb-8">
             Прозрачные
             <br />
             <HighlightedText>цены</HighlightedText>
@@ -79,58 +81,58 @@ export function PricingSection({ withTopPadding = false }: PricingSectionProps) 
 
       <div className="py-24">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-3 gap-8">
-            {packages.map((pkg) => (
-              <div
-                key={pkg.id}
-                className={`relative p-8 border flex flex-col ${
-                  pkg.highlight ? "bg-foreground text-primary-foreground border-foreground" : "border-border bg-background"
-                }`}
-              >
-                {pkg.highlight && (
-                  <span className="absolute top-0 right-8 -translate-y-1/2 bg-orange-400 text-white text-xs tracking-widest uppercase px-3 py-1">
-                    Популярный
-                  </span>
-                )}
-                <div className="mb-8">
-                  <h3
-                    className={`text-xs tracking-[0.3em] uppercase mb-4 ${
-                      pkg.highlight ? "text-primary-foreground/60" : "text-muted-foreground"
-                    }`}
-                  >
-                    {pkg.name}
-                  </h3>
-                  <p className="text-3xl font-medium mb-4">{pkg.price}</p>
-                  <p className={`text-sm leading-relaxed ${pkg.highlight ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
-                    {pkg.description}
-                  </p>
+          <ol className="max-w-5xl mx-auto space-y-10">
+            {packages.map((pkg, index) => (
+              <li key={pkg.id} className="grid md:grid-cols-[220px_1fr] gap-6 md:gap-10">
+                <div className="relative flex md:flex-col md:items-start items-center justify-between md:justify-start gap-4">
+                  {index !== packages.length - 1 && (
+                    <span className="absolute left-5 top-12 hidden md:block h-[calc(100%+40px)] w-px bg-border/60" />
+                  )}
+
+                  <div className="flex items-center gap-4">
+                    <span
+                      className={
+                        "relative inline-flex items-center justify-center w-10 h-10 rounded-full border text-sm font-medium bg-background/70 backdrop-blur-sm " +
+                        (pkg.highlight
+                          ? "border-orange-300/50 text-orange-200 shadow-[0_0_0_6px_rgba(251,146,60,0.08)]"
+                          : "border-border text-muted-foreground shadow-[0_0_0_6px_rgba(255,255,255,0.03)]")
+                      }
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground">Этап</p>
+                      <h3 className="text-lg font-medium tracking-tight">{pkg.name}</h3>
+                    </div>
+                  </div>
+
+                  <p className="text-base md:text-lg font-medium text-foreground whitespace-nowrap">{pkg.price}</p>
                 </div>
 
-                <ul className="space-y-3 mb-10 flex-1">
-                  {pkg.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3 text-sm">
-                      <Check
-                        className={`w-4 h-4 mt-0.5 shrink-0 ${pkg.highlight ? "text-orange-300" : "text-foreground"}`}
-                        strokeWidth={2}
-                      />
-                      <span className={pkg.highlight ? "text-primary-foreground/80" : "text-muted-foreground"}>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href="#contact"
-                  className={`inline-flex items-center justify-center px-6 py-3 text-sm tracking-wide transition-colors duration-300 rounded-md ${
-                    pkg.highlight
-                      ? "bg-primary-foreground text-foreground hover:bg-primary-foreground/90"
-                      : "border border-foreground/20 hover:bg-foreground hover:text-primary-foreground"
-                  }`}
+                <div
+                  className={
+                    "relative border rounded-2xl p-7 md:p-8 bg-background/70 backdrop-blur-sm overflow-hidden " +
+                    (pkg.highlight
+                      ? "border-foreground/15 ring-1 ring-orange-300/20"
+                      : "border-border ring-1 ring-white/5")
+                  }
                 >
-                  Обсудить проект
-                </a>
-              </div>
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-secondary/40 via-transparent to-transparent" />
+                  <div className="relative">
+                  <p className="text-muted-foreground leading-relaxed max-w-2xl">{pkg.description}</p>
+
+                  <div className="mt-6 grid sm:grid-cols-2 gap-x-10 gap-y-3">
+                    {pkg.features.map((feature) => (
+                      <div key={feature} className="text-sm text-muted-foreground leading-relaxed">
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+                  </div>
+                </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
 
@@ -141,18 +143,27 @@ export function PricingSection({ withTopPadding = false }: PricingSectionProps) 
             <h3 className="text-3xl md:text-4xl font-medium tracking-tight">Отдельные услуги</h3>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-0">
-            {additionalServices.map((service, index) => (
-              <div
-                key={service.name}
-                className={`flex items-center justify-between py-5 px-0 border-b border-border ${
-                  index % 2 === 0 ? "md:pr-12" : "md:pl-12 md:border-l"
-                }`}
-              >
-                <span className="text-sm">{service.name}</span>
-                <span className="text-sm font-medium text-muted-foreground">{service.price}</span>
+          <div className="relative border rounded-2xl bg-background/70 backdrop-blur-sm overflow-hidden ring-1 ring-white/5">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-secondary/40 via-transparent to-transparent" />
+            <div className="relative grid md:grid-cols-2">
+              <div className="flex flex-col divide-y divide-border/60">
+                {leftServices.map((service) => (
+                  <div key={service.name} className="flex items-center justify-between gap-6 px-6 md:px-8 py-5">
+                    <span className="text-sm text-foreground/90">{service.name}</span>
+                    <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">{service.price}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+
+              <div className="flex flex-col divide-y divide-border/60 md:border-l md:border-border/60">
+                {rightServices.map((service) => (
+                  <div key={service.name} className="flex items-center justify-between gap-6 px-6 md:px-8 py-5">
+                    <span className="text-sm text-foreground/90">{service.name}</span>
+                    <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">{service.price}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
