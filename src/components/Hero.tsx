@@ -5,7 +5,6 @@ export function Hero() {
   const contentRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
-  const [animationProgress, setAnimationProgress] = useState(0)
   const [animationComplete, setAnimationComplete] = useState(false)
   const accumulatedScrollRef = useRef(0)
   const touchStartY = useRef<number>(0)
@@ -21,7 +20,6 @@ export function Hero() {
         accumulatedScrollRef.current = Math.max(0, Math.min(700, accumulatedScrollRef.current + e.deltaY))
 
         const newProgress = Math.max(0, Math.min(1, accumulatedScrollRef.current / 700))
-        setAnimationProgress(newProgress)
 
         if (newProgress >= 1) {
           setAnimationComplete(true)
@@ -70,7 +68,6 @@ export function Hero() {
         accumulatedScrollRef.current = Math.max(0, Math.min(700, accumulatedScrollRef.current + deltaY * 3))
 
         const newProgress = Math.max(0, Math.min(1, accumulatedScrollRef.current / 700))
-        setAnimationProgress(newProgress)
 
         if (newProgress >= 1) {
           setAnimationComplete(true)
