@@ -5,7 +5,7 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2">
             <a href="/" className="inline-block mb-6">
-              <img src="/images/logo_2.png" alt="Maria Kostina" width={120} height={32} className="w-auto h-32" />
+              <img src="/Kostina_designer/images/logo_2.png" alt="Maria Kostina" width={120} height={32} className="w-auto h-32" />
             </a>
             <p className="text-muted-foreground leading-relaxed max-w-sm">
               Дизайн интерьеров в Новосибирске. Создаю пространства, которые отражают вашу личность и вдохновляют каждый день.

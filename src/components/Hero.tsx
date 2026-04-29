@@ -115,7 +115,7 @@ export function Hero() {
     <section id="hero" ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hously-background.png"
+          src="/Kostina_designer/images/hously-background.png"
           alt="Минималистичный архитектурный интерьер"
           className="w-full h-full object-cover object-center"
         />
@@ -145,7 +145,7 @@ export function Hero() {
 
       <div className="absolute inset-0 z-20 pointer-events-none">
         <img
-          src="/images/Image2.png"
+          src="/Kostina_designer/images/Image2.png"
           alt="Мраморная кухонная столешница"
           className="w-full h-full object-cover object-center translate-y-40 md:translate-y-38"
         />

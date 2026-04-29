@@ -34,7 +34,7 @@ export function Header() {
       <nav className="container mx-auto px-6 flex items-center justify-between md:px-[24]">
         <a href="/" className="flex items-center gap-2 group" onClick={scrollToTop}>
           <img
-            src="/images/logo.png"
+            src="/Kostina_designer/images/logo.png"
             alt="Maria Kostina"
             width={120}
             height={32}

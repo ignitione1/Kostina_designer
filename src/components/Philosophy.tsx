@@ -61,10 +61,11 @@ export function Philosophy() {
 
             <div className="relative hidden lg:block">
               <img
-                src="/images/mixboard-image.png"
+                src="/Kostina_designer/images/mixboard-image.png"
                 alt="Интерьер в исполнении Maria Kostina"
                 className="opacity-90 relative z-10 w-auto"
               />
+              <img src="/Kostina_designer/images/logo_2.png" alt="Maria Kostina" width={120} height={32} className="w-auto h-32" />
             </div>
           </div>
 
