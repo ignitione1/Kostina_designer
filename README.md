@@ -26,7 +26,6 @@
 ```
 kostina-portfolio/
 ├── config/                 # Конфигурационные файлы
-│   ├── vite.config.ts     # Конфигурация Vite
 │   ├── tsconfig.json      # Конфигурация TypeScript
 │   └── tsconfig.node.json # Конфигурация TypeScript для Node.js
 ├── src/                   # Исходный код
@@ -36,7 +35,9 @@ kostina-portfolio/
 │   ├── main.tsx          # Точка входа приложения
 │   └── index.css         # Глобальные стили
 ├── public/               # Статические файлы
+├── docs/                 # Документация и собранные файлы
 ├── index.html            # HTML-шаблон
+├── vite.config.ts        # Конфигурация Vite
 ├── tailwind.config.ts    # Конфигурация TailwindCSS
 ├── postcss.config.js     # Конфигурация PostCSS
 └── package.json          # Зависимости и скрипты
@@ -108,7 +109,7 @@ npm run preview
 - **Plugins** — подключение tailwindcss-animate
 
 ### Vite
-Конфигурация Vite находится в `config/vite.config.ts`. Используется плагин `@vitejs/plugin-react` для поддержки React.
+Конфигурация Vite находится в `vite.config.ts` в корне проекта. Используется плагин `@vitejs/plugin-react` для поддержки React.
 
 ## Особенности проекта
 
