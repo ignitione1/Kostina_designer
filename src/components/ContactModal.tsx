@@ -62,7 +62,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
       window.removeEventListener("keydown", onKeyDown)
       document.body.style.overflow = previousOverflow
     }
-  }, [requestClose])
+  }, [])
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {}
