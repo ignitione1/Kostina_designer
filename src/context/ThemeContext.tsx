@@ -13,8 +13,7 @@ const getInitialTheme = (): Theme => {
   const savedTheme = localStorage.getItem('theme') as Theme | null
   if (savedTheme) return savedTheme
 
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  return prefersDark ? 'dark' : 'light'
+  return 'light'
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
