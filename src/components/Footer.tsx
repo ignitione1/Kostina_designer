@@ -1,11 +1,21 @@
+import { useTheme } from "../context/ThemeContext"
+
 export function Footer() {
+  const { theme } = useTheme()
+
   return (
     <footer className="py-16 md:py-24 border-t border-border">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2">
             <a href="/" className="inline-block mb-6">
-              <img src="/Kostina_designer/images/logo_2.png" alt="Maria Kostina" width={120} height={32} className="w-auto h-32" />
+              <img
+                src={theme === 'dark' ? "/Kostina_designer/images/logo.png" : "/Kostina_designer/images/logo_2.png"}
+                alt="Maria Kostina"
+                width={120}
+                height={32}
+                className="w-auto h-32 transition-all duration-300"
+              />
             </a>
             <p className="text-muted-foreground leading-relaxed max-w-sm">
               Дизайн интерьеров в Новосибирске. Создаю пространства, которые отражают вашу личность и вдохновляют каждый день.

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, ReactNode } from "react"
+import { useTheme } from "../context/ThemeContext"
 
 interface HighlightedTextProps {
   children: ReactNode
@@ -7,6 +8,7 @@ interface HighlightedTextProps {
 export function HighlightedText({ children }: HighlightedTextProps) {
   const spanRef = useRef<HTMLSpanElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const { theme } = useTheme()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,14 +38,14 @@ export function HighlightedText({ children }: HighlightedTextProps) {
       >
         <path
           d="M0 8 Q50 2, 100 6 T200 8"
-          stroke="rgb(251 146 60)"
+          stroke={theme === 'dark' ? 'rgb(250 204 21)' : 'rgb(251 146 60)'}
           strokeWidth="2"
           fill="none"
           strokeLinecap="round"
           style={{
             strokeDasharray: 200,
             strokeDashoffset: isVisible ? 0 : 200,
-            transition: "stroke-dashoffset 0.8s ease-out",
+            transition: "stroke-dashoffset 0.8s ease-out, stroke 0.3s ease-out",
           }}
         />
       </svg>

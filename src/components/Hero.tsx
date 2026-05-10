@@ -132,7 +132,7 @@ export function Hero() {
         }}
       >
         <div className="mb-72 md:mb-60 lg:mb-80">
-          <p className="text-sm tracking-[0.3em] uppercase text-center text-secondary mb-2">{"Дизайн интерьеров · Новосибирск"}</p>
+          <p className="text-sm tracking-[0.3em] uppercase text-center mb-2" style={{ color: 'rgb(191, 175, 151)' }}>{"Дизайн интерьеров · Новосибирск"}</p>
 
           <h1
             ref={titleRef}

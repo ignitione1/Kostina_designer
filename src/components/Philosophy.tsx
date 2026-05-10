@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { HighlightedText } from "./HighlightedText"
+import { useTheme } from "../context/ThemeContext"
 
 const philosophyItems = [
   {
@@ -26,6 +27,7 @@ const philosophyItems = [
 export function Philosophy() {
   const [visibleItems, setVisibleItems] = useState<number[]>([])
   const itemRefs = useRef<(HTMLDivElement | null)[]>([])
+  const { theme } = useTheme()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,7 +67,13 @@ export function Philosophy() {
                 alt="Интерьер в исполнении Maria Kostina"
                 className="opacity-90 relative z-10 w-auto"
               />
-              <img src="/Kostina_designer/images/logo_2.png" alt="Maria Kostina" width={120} height={32} className="w-auto h-32" />
+              <img
+                src={theme === 'dark' ? "/Kostina_designer/images/logo.png" : "/Kostina_designer/images/logo_2.png"}
+                alt="Maria Kostina"
+                width={120}
+                height={32}
+                className="w-auto h-32 transition-all duration-300"
+              />
             </div>
           </div>
 

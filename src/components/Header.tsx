@@ -1,9 +1,12 @@
 import { useState, useEffect, MouseEvent } from "react"
 import { cn } from "../lib/utils"
+import { useTheme } from "../context/ThemeContext"
+import { LightBulb } from "./LightBulb"
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,15 +37,15 @@ export function Header() {
       <nav className="container mx-auto px-6 flex items-center justify-between md:px-[24]">
         <a href="/" className="flex items-center gap-2 group" onClick={scrollToTop}>
           <img
-            src="/Kostina_designer/images/logo.png"
+            src={theme === 'dark' ? "/Kostina_designer/images/logo_2.png" : "/Kostina_designer/images/logo.png"}
             alt="Maria Kostina"
             width={120}
             height={32}
-            className="w-auto h-12 md:h-14 object-contain"
+            className="w-auto h-12 md:h-14 object-contain transition-all duration-300"
           />
         </a>
 
-        <ul className="hidden md:flex items-center gap-10 text-sm tracking-wide">
+        <ul className={cn("hidden md:flex items-center gap-10 text-sm tracking-wide", theme === 'dark' ? "text-gray-900" : "text-white")}>
           {[
             { label: "Главная", href: "#hero" },
             { label: "Обо мне", href: "#about" },
@@ -54,7 +57,7 @@ export function Header() {
             <li key={item.label}>
               <a
                 href={item.href}
-                className="hover:text-[rgb(251,146,60)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 hover:after:w-full after:bg-[rgb(251,146,60)] after:transition-all after:duration-300 text-white"
+                className="hover:text-[rgb(251,146,60)] transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 hover:after:w-full after:bg-[rgb(251,146,60)] after:transition-all after:duration-300"
               >
                 {item.label}
               </a>
@@ -62,20 +65,24 @@ export function Header() {
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className={cn(
-            "hidden md:inline-flex items-center gap-2 text-sm px-5 py-2.5 transition-all duration-300 rounded-md",
-            scrolled
-              ? "bg-white text-foreground border border-foreground/20 hover:bg-foreground hover:text-white"
-              : "bg-white text-foreground border border-foreground/20 hover:bg-foreground hover:text-white",
-          )}
-        >
-          Связаться
-        </a>
+        <div className="hidden md:flex items-center gap-3">
+          <LightBulb isOn={theme === 'dark'} onClick={toggleTheme} />
+
+          <a
+            href="#contact"
+            className={cn(
+              "inline-flex items-center gap-2 text-sm px-5 py-2.5 transition-all duration-300 rounded-md font-medium",
+              theme === 'dark'
+                ? "bg-transparent text-gray-900 border border-gray-900/30 hover:bg-gray-900/10"
+                : "bg-white text-foreground border border-foreground/20 hover:bg-foreground hover:text-white",
+            )}
+          >
+            Связаться
+          </a>
+        </div>
 
         <button
-          className="md:hidden z-50 transition-colors duration-300 text-white"
+          className={cn("md:hidden z-50 transition-colors duration-300", theme === 'dark' ? "text-gray-900" : "text-white")}
           aria-label={mobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
@@ -100,7 +107,7 @@ export function Header() {
         )}
       >
         <div className="container mx-auto px-6">
-          <ul className="flex flex-col gap-6 mb-8">
+          <ul className={cn("flex flex-col gap-6 mb-8", theme === 'dark' ? "text-gray-900" : "text-white")}>
             {[
               { label: "Главная", href: "#hero" },
               { label: "Обо мне", href: "#about" },
@@ -112,7 +119,7 @@ export function Header() {
               <li key={item.label}>
                 <a
                   href={item.href}
-                  className="hover:text-[rgb(251,146,60)] transition-colors duration-300 text-white text-4xl font-light block"
+                  className="hover:text-[rgb(251,146,60)] transition-colors duration-300 text-4xl font-light block"
                   onClick={closeMobileMenu}
                 >
                   {item.label}
@@ -121,13 +128,28 @@ export function Header() {
             ))}
           </ul>
 
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center gap-2 text-sm px-5 py-2.5 bg-white text-foreground border border-foreground/20 hover:bg-foreground hover:text-white transition-all duration-300 mb-4 rounded-md"
-            onClick={closeMobileMenu}
-          >
-            Связаться
-          </a>
+          <div className="flex items-center gap-3 mb-4">
+            <LightBulb
+              isOn={theme === 'dark'}
+              onClick={() => {
+                toggleTheme()
+                closeMobileMenu()
+              }}
+            />
+
+            <a
+              href="#contact"
+              className={cn(
+                "inline-flex items-center justify-center gap-2 text-sm px-5 py-2.5 transition-all duration-300 rounded-md flex-1 font-medium",
+                theme === 'dark'
+                  ? "bg-transparent text-gray-900 border border-gray-900/30 hover:bg-gray-900/10"
+                  : "bg-white text-foreground border border-foreground/20 hover:bg-foreground hover:text-white",
+              )}
+              onClick={closeMobileMenu}
+            >
+              Связаться
+            </a>
+          </div>
         </div>
       </div>
     </header>
